@@ -3,11 +3,26 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-trailing-spaces */
 
+const data = {
+  region: {
+    name: 'Africa',
+    avgAge: 19.7,
+    avgDailyIncomeInUSD: 4,
+    avgDailyIncomePopulation: 0.73
+  },
+  
+  periodType: 'days',
+  timeToElapse: 38,
+  reportedCases: 2747,
+  population: 92931687,
+  totalHospitalBeds: 678874
+}
+
 const impact = {};
 const severeImpact = {};
 let numberOfDays;
 
-const convertToDays = (data) => {
+const convertToDays = () => {
   switch (data.periodType) {
     case 'days':
       numberOfDays = data.timeToElapse * 1;
@@ -50,8 +65,8 @@ const covid19ImpactEstimator = (data) => {
   impact.currentlyInfected = data.reportedCases * 10;
   severeImpact.currentlyInfected = data.reportedCases * 50;
   
-  impact.infectionsByRequestedTime = Math.round(impact.currentlyInfected * (2 ** (convertToDays(data) / 3)));
-  severeImpact.infectionsByRequestedTime = Math.round(severeImpact.currentlyInfected * (2 ** (convertToDays(data) / 3)));
+  impact.infectionsByRequestedTime = Math.round(impact.currentlyInfected * (2 ** Math.floor((convertToDays() / 3))));
+  severeImpact.infectionsByRequestedTime = Math.round(severeImpact.currentlyInfected * (2 ** Math.floor((convertToDays() / 3))));
 
   impact.severeCasesByRequestedTime = Math.round(impact.infectionsByRequestedTime * 0.15);
   severeImpact.severeCasesByRequestedTime = Math.round(severeImpact.infectionsByRequestedTime * 0.15);
@@ -64,9 +79,13 @@ const covid19ImpactEstimator = (data) => {
 
   impact.casesForVentilatorsByRequestedTime = Math.round(0.02 * impact.infectionsByRequestedTime);
   severeImpact.casesForVentilatorsByRequestedTime = Math.round(0.02 * severeImpact.infectionsByRequestedTime);
-  
-  impact.dollarsInFlight = Math.round((impact.infectionsByRequestedTime * 0.65) * 1.5 * convertToDays(data));
-  severeImpact.dollarsInFlight = Math.round((severeImpact.infectionsByRequestedTime * 0.65) * 1.5 * convertToDays(data));
+
+  const impactDollar = (impact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data);
+  const severeDollar = (severeImpact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data);
+
+  impact.dollarsInFlight = Math.round(impactDollar * 10) / 10;
+    severeImpact.dollarsInFlight = Math.round(severeDollar * 10) / 10;
+
   return { data, impact, severeImpact };
 };
 
