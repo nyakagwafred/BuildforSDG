@@ -5,22 +5,23 @@
 
 const impact = {};
 const severeImpact = {};
+let numberOfDays;
 
 const convertToDays = (data) => {
   switch (data.periodType) {
     case 'days':
-      data.timeToElapse *= 1;
+      numberOfDays = data.timeToElapse * 1;
       break;
     case 'weeks':
-      data.timeToElapse *= 7;
+      numberOfDays = data.timeToElapse * 7;
       break;
     case 'months':
-      data.timeToElapse *= 30;
+      numberOfDays = data.timeToElapse * 30;
       break;
     default:
-      data.timeToElapse *= 31;
+      numberOfDays = data.timeToElapse * 31;
   }
-  return data.timeToElapse;
+  return numberOfDays;
 };
 
 // Converts weeks and months to days
