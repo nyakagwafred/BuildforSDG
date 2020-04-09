@@ -3,21 +3,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-trailing-spaces */
 
-// const data = {
-//   region: {
-//     name: 'Africa',
-//     avgAge: 19.7,
-//     avgDailyIncomeInUSD: 4,
-//     avgDailyIncomePopulation: 0.73
-//   },
-  
-//   periodType: 'days',
-//   timeToElapse: 38,
-//   reportedCases: 2747,
-//   population: 92931687,
-//   totalHospitalBeds: 678874
-// };
-
 const impact = {};
 const severeImpact = {};
 let numberOfDays;
@@ -38,26 +23,6 @@ const convertToDays = (data) => {
       return numberOfDays;
   }
 };
-
-// Converts weeks and months to days
-// eslint-disable-next-line consistent-return
-// const convertToDays = (data) => {
-
-//   if (data.periodType === 'days') {
-//     data.timeToElapse *= 1;
-//   } 
-
-//   if (data.periodType === 'weeks') {
-//     data.timeToElapse *= 7;
-//   } 
-
-//   if (data.periodType === 'months') {
-//     data.timeToElapse *= 30;
-//   }
-
-//   return data.timeToElapse;
-// };
-
 
 // eslint-disable-next-line no-shadow
 const covid19ImpactEstimator = (data) => {
