@@ -7,6 +7,7 @@ const impact = {};
 const severeImpact = {};
 let numberOfDays;
 
+
 const convertToDays = (data) => {
   switch (data.periodType) {
     case 'days':
@@ -51,8 +52,8 @@ const covid19ImpactEstimator = (data) => {
   impact.casesForVentilatorsByRequestedTime = Math.ceil(0.02 * impact.infectionsByRequestedTime);
   severeImpact.casesForVentilatorsByRequestedTime = Math.ceil(0.02 * severeImpact.infectionsByRequestedTime);
 
-  impact.dollarsInFlight = Math.ceil((impact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data));
-  severeImpact.dollarsInFligh = Math.ceil((severeImpact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data));
+  impact.dollarsInFlight = parseFloat((impact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data)).toFixed(2);
+  severeImpact.dollarsInFligh = parseFloat((severeImpact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data).toFixed(2));
 
   return { data, impact, severeImpact };
 };
