@@ -22,7 +22,7 @@ const impact = {};
 const severeImpact = {};
 let numberOfDays;
 
-const convertToDays = () => {
+const convertToDays = (data) => {
   switch (data.periodType) {
     case 'days':
       numberOfDays = data.timeToElapse * 1;
