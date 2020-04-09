@@ -2,26 +2,10 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-trailing-spaces */
 
-const impact = {
-  currentlyInfected: 0,
-  infectionsByRequestedTime: 0,
-  severeCasesByRequestedTime: 0,
-  hospitalBedsByRequestedTime: 0,
-  casesForICUByRequestedTime: 0,
-  casesForVentilatorsByRequestedTime: 0,
-  dollarsInFlight: ''
-};
+const impact = {};
 
 
-const severeImpact = {
-  currentlyInfected: 0,
-  infectionsByRequestedTime: 0,
-  severeCasesByRequestedTime: 0,
-  hospitalBedsByRequestedTime: 0,
-  casesForICUByRequestedTime: 0,
-  casesForVentilatorsByRequestedTime: 0,
-  dollarsInFlight: ''
-};
+const severeImpact = {};
 
 
 // eslint-disable-next-line no-shadow
