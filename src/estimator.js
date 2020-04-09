@@ -30,8 +30,8 @@ const covid19ImpactEstimator = (data) => {
   impact.currentlyInfected = data.reportedCases * 10;
   severeImpact.currentlyInfected = data.reportedCases * 50;
   
-  impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** (convertToDays() / 3));
-  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** (convertToDays() / 3));
+  impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** (convertToDays(data) / 3));
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** (convertToDays(data) / 3));
 
   impact.severeCasesByRequestedTime = Math.round(impact.infectionsByRequestedTime * 0.15);
   severeImpact.severeCasesByRequestedTime = Math.round(severeImpact.infectionsByRequestedTime * 0.15);
@@ -45,8 +45,8 @@ const covid19ImpactEstimator = (data) => {
   impact.casesForVentilatorsByRequestedTime = Math.round(0.02 * impact.infectionsByRequestedTime);
   severeImpact.casesForVentilatorsByRequestedTime = Math.round(0.02 * severeImpact.infectionsByRequestedTime);
   
-  impact.dollarsInFlight = Math.round((impact.infectionsByRequestedTime * 0.65) * 1.5 * data.timeToElapse);
-  severeImpact.dollarsInFlight = Math.round((severeImpact.infectionsByRequestedTime * 0.65) * 1.5 * data.timeToElapse);
+  impact.dollarsInFlight = Math.round((impact.infectionsByRequestedTime * 0.65) * 1.5 * convertToDays(data));
+  severeImpact.dollarsInFlight = Math.round((severeImpact.infectionsByRequestedTime * 0.65) * 1.5 * convertToDays(data));
   return { data, impact, severeImpact };
 };
 
