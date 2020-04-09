@@ -27,17 +27,23 @@ const convertToDays = (data) => {
 // eslint-disable-next-line no-shadow
 const covid19ImpactEstimator = (data) => {
 
+  // Challenge 1
+
   impact.currentlyInfected = data.reportedCases * 10;
   severeImpact.currentlyInfected = data.reportedCases * 50;
   
   impact.infectionsByRequestedTime = (impact.currentlyInfected * (2 ** Math.floor((convertToDays(data) / 3))));
   severeImpact.infectionsByRequestedTime = (severeImpact.currentlyInfected * (2 ** Math.floor((convertToDays(data) / 3))));
 
+  // Challenge 2
+
   impact.severeCasesByRequestedTime = Math.ceil(impact.infectionsByRequestedTime * 0.15);
   severeImpact.severeCasesByRequestedTime = Math.ceil(severeImpact.infectionsByRequestedTime * 0.15);
 
   impact.hospitalBedsByRequestedTime = Math.ceil(((0.35 * data.totalHospitalBeds) - impact.severeCasesByRequestedTime));
   severeImpact.hospitalBedsByRequestedTime = Math.ceil(((0.35 * data.totalHospitalBeds) - severeImpact.severeCasesByRequestedTime));
+
+  // Challenge 3
 
   impact.casesForICUByRequestedTime = Math.floor(0.05 * impact.infectionsByRequestedTime);
   severeImpact.casesForICUByRequestedTime = Math.floor(0.05 * severeImpact.infectionsByRequestedTime);
