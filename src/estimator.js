@@ -16,7 +16,7 @@ const data = {
   reportedCases: 2747,
   population: 92931687,
   totalHospitalBeds: 678874
-}
+};
 
 const impact = {};
 const severeImpact = {};
