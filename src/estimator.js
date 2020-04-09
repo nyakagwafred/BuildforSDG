@@ -2,21 +2,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable no-trailing-spaces */
 
-const data = {
-  region: {
-    name: 'Africa',
-    avgAge: 19.7,
-    avgDailyIncomeInUSD: 5,
-    avgDailyIncomePopulation: 0.71
-  },
-  periodType: 'days',
-  timeToElapse: 6,
-  reportedCases: 674,
-  population: 66622705,
-  totalHospitalBeds: 1380614
-};
-
-
 const impact = {
   currentlyInfected: 0,
   infectionsByRequestedTime: 0,
@@ -40,7 +25,7 @@ const severeImpact = {
 
 
 // eslint-disable-next-line no-shadow
-const covid19ImpactEstimator = () => {
+const covid19ImpactEstimator = (data) => {
 
   impact.currentlyInfected = data.reportedCases * 10;
   severeImpact.currentlyInfected = data.reportedCases * 50;
