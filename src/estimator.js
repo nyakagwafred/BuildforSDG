@@ -11,17 +11,17 @@ const convertToDays = (data) => {
   switch (data.periodType) {
     case 'days':
       numberOfDays = data.timeToElapse * 1;
-      break;
+      return numberOfDays;
     case 'weeks':
       numberOfDays = data.timeToElapse * 7;
-      break;
+      return numberOfDays;
     case 'months':
       numberOfDays = data.timeToElapse * 30;
-      break;
+      return numberOfDays;
     default:
       numberOfDays = data.timeToElapse * 31;
+      return numberOfDays;
   }
-  return numberOfDays;
 };
 
 // Converts weeks and months to days
