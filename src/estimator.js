@@ -6,24 +6,41 @@
 const impact = {};
 const severeImpact = {};
 
-// Converts weeks and months to days
-// eslint-disable-next-line consistent-return
 const convertToDays = (data) => {
-
-  if (data.periodType === 'days') {
-    data.timeToElapse *= 1;
-  } 
-
-  if (data.periodType === 'weeks') {
-    data.timeToElapse *= 7;
-  } 
-
-  if (data.periodType === 'months') {
-    data.timeToElapse *= 30;
+  switch (data.periodType) {
+    case 'days':
+      data.timeToElapse *= 1;
+      break;
+    case 'weeks':
+      data.timeToElapse *= 7;
+      break;
+    case 'months':
+      data.timeToElapse *= 30;
+      break;
+    default:
+      data.timeToElapse *= 31;
   }
-
   return data.timeToElapse;
 };
+
+// Converts weeks and months to days
+// eslint-disable-next-line consistent-return
+// const convertToDays = (data) => {
+
+//   if (data.periodType === 'days') {
+//     data.timeToElapse *= 1;
+//   } 
+
+//   if (data.periodType === 'weeks') {
+//     data.timeToElapse *= 7;
+//   } 
+
+//   if (data.periodType === 'months') {
+//     data.timeToElapse *= 30;
+//   }
+
+//   return data.timeToElapse;
+// };
 
 
 // eslint-disable-next-line no-shadow
