@@ -45,17 +45,14 @@ const covid19ImpactEstimator = (data) => {
 
   // Challenge 3
 
-  impact.casesForICUByRequestedTime = Math.floor(0.05 * impact.infectionsByRequestedTime);
-  severeImpact.casesForICUByRequestedTime = Math.floor(0.05 * severeImpact.infectionsByRequestedTime);
+  impact.casesForICUByRequestedTime = Math.round(0.05 * impact.infectionsByRequestedTime);
+  severeImpact.casesForICUByRequestedTime = Math.round(0.05 * severeImpact.infectionsByRequestedTime);
 
-  impact.casesForVentilatorsByRequestedTime = Math.ceil(0.02 * impact.infectionsByRequestedTime);
-  severeImpact.casesForVentilatorsByRequestedTime = Math.ceil(0.02 * severeImpact.infectionsByRequestedTime);
+  impact.casesForVentilatorsByRequestedTime = Math.round(0.02 * impact.infectionsByRequestedTime);
+  severeImpact.casesForVentilatorsByRequestedTime = Math.round(0.02 * severeImpact.infectionsByRequestedTime);
 
-  const impactDollar = (impact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data);
-  const severeDollar = (severeImpact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data);
-
-  impact.dollarsInFlight = (Math.ceil(impactDollar) - 1);
-  severeImpact.dollarsInFlight = (Math.ceil(severeDollar) - 1);
+  impact.dollarsInFlight = Math.round((impact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data));
+  severeImpact.dollarsInFligh = Math.round((severeImpact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data));
 
   return { data, impact, severeImpact };
 };
