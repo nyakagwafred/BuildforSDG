@@ -40,7 +40,7 @@ const severeImpact = {
 //Impact Estimator Function
 const covid19ImpactEstimator = (data) => {
 
-const data = input;
+const input = data;
 
   impact.currentlyInfected = data.reportedCases * 10;
   severeImpact.currentlyInfected = data.reportedCases * 50;
