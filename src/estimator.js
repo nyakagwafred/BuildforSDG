@@ -11,16 +11,18 @@ const severeImpact = {};
 const convertToDays = (data) => {
 
   if (data.periodType === 'days') {
-    return data.timeToElapse;
+    data.timeToElapse *= 1;
   } 
 
   if (data.periodType === 'weeks') {
-    return data.timeToElapse * 7;
+    data.timeToElapse *= 7;
   } 
 
   if (data.periodType === 'months') {
-    return data.timeToElapse * 30;
+    data.timeToElapse *= 30;
   }
+
+  return data.timeToElapse;
 };
 
 
