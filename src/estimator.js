@@ -6,6 +6,23 @@
 const impact = {};
 const severeImpact = {};
 
+// Converts weeks and months to days
+// eslint-disable-next-line consistent-return
+const convertToDays = (data) => {
+
+  if (data.periodType === 'days') {
+    return data.timeToElapse;
+  } 
+
+  if (data.periodType === 'weeks') {
+    return data.timeToElapse * 7;
+  } 
+
+  if (data.periodType === 'months') {
+    return data.timeToElapse * 30;
+  }
+};
+
 
 // eslint-disable-next-line no-shadow
 const covid19ImpactEstimator = (data) => {
@@ -13,8 +30,8 @@ const covid19ImpactEstimator = (data) => {
   impact.currentlyInfected = data.reportedCases * 10;
   severeImpact.currentlyInfected = data.reportedCases * 50;
   
-  impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** (data.timeToElapse / 3));
-  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** (data.timeToElapse / 3));
+  impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** (convertToDays() / 3));
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** (convertToDays() / 3));
 
   impact.severeCasesByRequestedTime = Math.round(impact.infectionsByRequestedTime * 0.15);
   severeImpact.severeCasesByRequestedTime = Math.round(severeImpact.infectionsByRequestedTime * 0.15);
