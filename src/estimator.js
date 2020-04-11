@@ -11,7 +11,7 @@ let numberOfDays;
 const convertToDays = (data) => {
   switch (data.periodType) {
     case 'days':
-      numberOfDays = data.timeToElapse * 1;
+      numberOfDays = data.timeToElapse;
       return numberOfDays;
     case 'weeks':
       numberOfDays = data.timeToElapse * 7;
@@ -20,7 +20,7 @@ const convertToDays = (data) => {
       numberOfDays = data.timeToElapse * 30;
       return numberOfDays;
     default:
-      numberOfDays = data.timeToElapse * 1;
+      numberOfDays = data.timeToElapse;
       return numberOfDays;
   }
 };
@@ -33,8 +33,8 @@ const covid19ImpactEstimator = (data) => {
   impact.currentlyInfected = data.reportedCases * 10;
   severeImpact.currentlyInfected = data.reportedCases * 50;
   
-  impact.infectionsByRequestedTime = Math.trunc(impact.currentlyInfected * (2 ** Math.floor((convertToDays(data) / 3))));
-  severeImpact.infectionsByRequestedTime = Math.trunc(severeImpact.currentlyInfected * (2 ** Math.floor((convertToDays(data) / 3))));
+  impact.infectionsByRequestedTime = (impact.currentlyInfected * (2 ** Math.trunc((convertToDays(data) / 3))));
+  severeImpact.infectionsByRequestedTime = (severeImpact.currentlyInfected * (2 ** Math.trunc((convertToDays(data) / 3))));
 
   // Challenge 2
 
