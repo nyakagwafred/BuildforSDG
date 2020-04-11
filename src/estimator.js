@@ -20,7 +20,7 @@ const convertToDays = (data) => {
       numberOfDays = data.timeToElapse * 30;
       return numberOfDays;
     default:
-      numberOfDays = data.timeToElapse * 31;
+      numberOfDays = data.timeToElapse * 1;
       return numberOfDays;
   }
 };
@@ -52,8 +52,8 @@ const covid19ImpactEstimator = (data) => {
   impact.casesForVentilatorsByRequestedTime = Math.trunc(0.02 * impact.infectionsByRequestedTime);
   severeImpact.casesForVentilatorsByRequestedTime = Math.trunc(0.02 * severeImpact.infectionsByRequestedTime);
 
-  impact.dollarsInFlight = Math.trunc((impact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data));
-  severeImpact.dollarsInFligh = Math.trunc((severeImpact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation) * data.region.avgDailyIncomeInUSD * convertToDays(data));
+  impact.dollarsInFlight = Math.trunc(impact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD * convertToDays(data));
+  severeImpact.dollarsInFligh = Math.trunc(severeImpact.infectionsByRequestedTime * data.region.avgDailyIncomePopulation * data.region.avgDailyIncomeInUSD * convertToDays(data));
 
   return { data, impact, severeImpact };
 };
