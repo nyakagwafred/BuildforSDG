@@ -1,7 +1,5 @@
 body {
     font-family: cursive;
-    background-image: url(images\worldMap.png);
-
 }
 
 header {
@@ -9,9 +7,7 @@ header {
   color: rgb(0, 0, 0);
   margin-top: 10px;
   padding: 20px;
-
 }
-
 
 footer{
   padding:20px;
@@ -23,13 +19,6 @@ footer{
 
 header p {
   text-align: center;
-}
-
-
-.main {
-    background-color: darkgray;
-    border-radius: 5px;
-    
 }
 
 .sub {
@@ -54,7 +43,7 @@ input[type="text"]{
   margin: 0px 50px;
 }
 
-#cars {
+#data-period-type {
   height:40px;
   width: 82%;
   border-radius: 5px;
