@@ -9,7 +9,7 @@ header {
   color: rgb(177, 115, 115);
   margin-top: 10px;
   padding: 20px;
-  border-bottom: #e8491d 5px solid;
+  border-bottom: #b9a099; 5px solid;
 }
 
 
@@ -17,7 +17,7 @@ footer{
   padding:20px;
   margin-top:20px;
   color:#ffffff;
-  background-color:#e8491d;
+  background-color:#b9a099;
   text-align: center;
 }
 
@@ -65,18 +65,15 @@ input[type="text"]{
 #data-go-estimate {
     text-align: center;
     height:38px;
-    background:#e8491d;
+    background:#75a17b;
     border:0;
     width: 100%;
     color:#ffffff;
     border-radius: 2px;
 }
 
-.highlighter {
-  color: #e8491d;
-}
 
 .form {
-  border: #e8491d;
+  border: #b9a099;
   border-radius: 10px;
 }
