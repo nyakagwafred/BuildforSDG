@@ -23,19 +23,19 @@
         <form action="/action_page.php" class="form">
             <fieldset>
                 <legend>The COVID 19 Estimator:</legend>
-                <label for="fname">Population:</label><br>
+                <label for="population">Population:</label><br>
                 <input type="text" id="fname" placeholder="Enter population for region/city..." required><br>
-                <label for="lname">Time To Elapse:</label><br>
+                <label for="Time To Elapse">Time To Elapse:</label><br>
                 <input type="text" id="lname" placeholder="Enter Time in Days/Weeks/Months..." required><br>
-                <label for="lname">Reported Cases:</label><br>
+                <label for="Reported Cases">Reported Cases:</label><br>
                 <input type="text" id="lname" placeholder="Home many reported cases?" required><br>
-                <label for="lname">Total Hospital Beds:</label><br>
+                <label for="Hospital Beds">Total Hospital Beds:</label><br>
                 <input type="text" id="lname" placeholder="How many availaible beds?" required><br>
-                <label for="lname">Period Type:</label><br>
+                <label for="Period">Period Type:</label><br>
                 <select id="cars" name="cars" required>
-                    <option label="volvo">Days</option>
-                    <option label="saab">Weeks</option>
-                    <option label="fiat">Months</option>
+                    <option value="Days">Days</option>
+                    <option value="Weeks">Weeks</option>
+                    <option value="Months">Months</option>
                 </select>
                 <input type="submit" value="Check Estimates" id="data-go-estimate">
             </fieldset>
