@@ -23,16 +23,16 @@
         <form action="/action_page.php" class="form">
             <fieldset>
                 <legend>The COVID 19 Estimator:</legend>
-                <label for="population">Population:</label><br>
-                <input type="text" id="fname" placeholder="Enter population for region/city..." required><br>
-                <label for="Time To Elapse">Time To Elapse:</label><br>
-                <input type="text" id="lname" placeholder="Enter Time in Days/Weeks/Months..." required><br>
-                <label for="Reported Cases">Reported Cases:</label><br>
-                <input type="text" id="lname" placeholder="Home many reported cases?" required><br>
-                <label for="Hospital Beds">Total Hospital Beds:</label><br>
-                <input type="text" id="lname" placeholder="How many availaible beds?" required><br>
-                <label for="Period">Period Type:</label><br>
-                <select id="cars" name="cars" required>
+                <label for="data-population">Population:</label><br>
+                <input type="text" name="Population" id="data-population" placeholder="Enter population for region/city..." required><br>
+                <label for="data-time-to-elapse">Time To Elapse:</label><br>
+                <input type="text" name="Period" id="data-time-to-elapse" placeholder="Enter Time in Days/Weeks/Months..." required><br>
+                <label for="data-reported-cases">Reported Cases:</label><br>
+                <input type="text" name="Reported Cases" id="data-reported-cases" placeholder="Home many reported cases?" required><br>
+                <label for="data-total-hospital-beds">Total Hospital Beds:</label><br>
+                <input type="text" name="Beds" id="data-total-hospital-beds" placeholder="How many availaible beds?" required><br>
+                <label for="data-period-type">Period Type:</label><br>
+                <select id="data-period-type" name="periodType" required>
                     <option value="Days">Days</option>
                     <option value="Weeks">Weeks</option>
                     <option value="Months">Months</option>
