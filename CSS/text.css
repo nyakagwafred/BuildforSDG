@@ -1,0 +1,82 @@
+body {
+    font-family: cursive;
+    background-image: url(images\worldMap.png);
+
+}
+
+header {
+  background-color: rgb(34, 32, 32);
+  color: rgb(177, 115, 115);
+  margin-top: 10px;
+  padding: 20px;
+  border-bottom: #e8491d 5px solid;
+}
+
+
+footer{
+  padding:20px;
+  margin-top:20px;
+  color:#ffffff;
+  background-color:#e8491d;
+  text-align: center;
+}
+
+header p {
+  text-align: center;
+}
+
+
+.main {
+    background-color: darkgray;
+    border-radius: 5px;
+    
+}
+
+.sub {
+    background-color: darkgray;
+    border-radius: 5px;
+    margin-top: 1rem;
+    padding: 30px;
+    width: 50%;
+    margin: 50px auto;
+}
+
+header h1 {
+    font-size: 60px;
+    text-align: center;
+}
+
+input[type="text"]{
+  padding:4px;
+  height:25px;
+  width: 80%;
+  border-radius: 5px;
+  margin: 0px 50px;
+}
+
+#cars {
+  
+  height:40px;
+  width: 82%;
+  border-radius: 5px;
+  margin: 0px 50px 10px; 
+}
+
+#data-go-estimate {
+    text-align: center;
+    height:38px;
+    background:#e8491d;
+    border:0;
+    width: 100%;
+    color:#ffffff;
+    border-radius: 2px;
+}
+
+.highlighter {
+  color: #e8491d;
+}
+
+.form {
+  border: #e8491d;
+  border-radius: 10px;
+}
