@@ -5,8 +5,6 @@ body {
 header {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  margin-top: 10px;
-  padding: 20px;
 }
 
 footer{
@@ -17,17 +15,22 @@ footer{
   text-align: center;
 }
 
-header p {
+header p, h3 {
   text-align: center;
+}
+
+header h3 {
+  padding: 0px;
+  margin-bottom: 0px;
 }
 
 .sub {
     background-color: darkgray;
     border-radius: 5px;
-    margin-top: 1rem;
-    padding: 30px;
+    margin-top: 10px;
+    padding: 20px;
     width: 50%;
-    margin: 50px auto;
+    margin: 20px auto;
 }
 
 header h1 {
@@ -63,4 +66,14 @@ input[type="text"]{
 .form {
   border: #b9a099;
   border-radius: 10px;
+  
+}
+
+.novelty {
+  margin: auto 100px;
+}
+
+.light {
+  color: rgb(235, 38, 38);
+
 }
