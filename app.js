@@ -1,46 +1,115 @@
+/* eslint-disable import/newline-after-import */
+/* eslint-disable spaced-comment */
+/* eslint-disable no-multiple-empty-lines */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable linebreak-style */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 /* eslint-disable radix */
 /* eslint-disable linebreak-style */
 const express = require('express');
-
 const app = express();
-app.use(express.json());
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+require('dotenv/config');
+const XML2JSNOparser = require('xml2json');
+const estimator = require('./src/estimator');
 
-const courses = [
-  { id: 1, name: 'Course 1' },
-  { id: 2, name: 'Course 2' },
-  { id: 3, name: 'Course 3' }
-];
+app.use(bodyParser.json());
 
-app.get('/api/v1/on-covid-19', (req, res) => {
-  res.send('<h1>Working on it<h1>');
-});
+//Import Routes
+const postsRoute = require('./routes/posts');
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+// Middleware
+app.use(cors());
+// app.use('/posts', postsRoute);
 
-app.get('/api/courses', (req, res) => {
-  res.send(courses);
-});
 
-app.get('/api/courses/:id', (req, res) => {
-  const course = courses.find((c) => c.id === parseInt(req.params.id));
-  if (!course) res.status(404).send('Resourse Unavailable');
-  res.send(course);
-});
 
-app.post('/api/courses', (req, res) => {
-  const course = {
-    id: courses.length + 1,
-    name: req.body.name
+// Routes
+app.post('/api/v1/on-covid-19', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
   };
-  courses.push(course);
-  res.send(course);
+  res.send(estimator(data));
+  console.log(req.headers);
+  console.log(req.method);
+  console.log(req.path);
+  console.log(req.httpVersion);
+  
+  
+  
+  console.log('API ready for deployment');
+  
+  
+
+});
+
+app.post('/api/v1/on-covid-19/json', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
+  };
+  res.send(estimator(data));
+  console.log(estimator(data));
 });
 
 
-app.listen(3002, () => {
-  console.log('Listening on port 3002...');
+app.post('/api/v1/on-covid-19/xml', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
+  };
+  res.send(XML2JSNOparser.toXml(estimator(data)));
+  console.log(XML2JSNOparser.toXml(estimator(data)));
 });
+
+
+app.post('')
+
+
+
+
+
+//Config
+app.listen(3000, () => {
+  console.log('NodeJS Running | API Ready for HTTP Requests'); 
+});
+
+
+//Connect to DB
+mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => console.log('DB Connected!'))
+.catch((err) => { console.log(Error, err.message); });
+  
+
+
