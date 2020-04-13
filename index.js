@@ -52,9 +52,6 @@ app.post('/api/v1/on-covid-19', (req, res, next) => {
   
   
   console.log('API ready for deployment');
-  
-  
-
 });
 
 app.post('/api/v1/on-covid-19/json', (req, res, next) => {
@@ -95,11 +92,10 @@ app.post('/api/v1/on-covid-19/xml', (req, res, next) => {
 });
 
 
-app.post('')
-
-
-
-
+app.get('/', (req, res, next) => {
+  res.send('API succesfully Deployed');
+});
+   
 
 //Config
 app.listen(3000, () => {
@@ -109,7 +105,7 @@ app.listen(3000, () => {
 
 //Connect to DB
 mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => console.log('DB Connected!'))
-.catch((err) => { console.log(Error, err.message); });
+  .catch((err) => { console.log(Error, err.message); });
   
 
 
