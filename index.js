@@ -44,14 +44,6 @@ app.post('/api/v1/on-covid-19', (req, res, next) => {
     totalHospitalBeds: req.body.totalHospitalBeds
   };
   res.send(estimator(data));
-  console.log(req.headers);
-  console.log(req.method);
-  console.log(req.path);
-  console.log(req.httpVersion);
-  
-  
-  
-  console.log('API ready for deployment');
 });
 
 app.post('/api/v1/on-covid-19/json', (req, res, next) => {
@@ -69,7 +61,6 @@ app.post('/api/v1/on-covid-19/json', (req, res, next) => {
     totalHospitalBeds: req.body.totalHospitalBeds
   };
   res.send(estimator(data));
-  console.log(estimator(data));
 });
 
 
@@ -88,7 +79,6 @@ app.post('/api/v1/on-covid-19/xml', (req, res, next) => {
     totalHospitalBeds: req.body.totalHospitalBeds
   };
   res.send(XML2JSNOparser.toXml(estimator(data)));
-  console.log(XML2JSNOparser.toXml(estimator(data)));
 });
 
 
@@ -98,9 +88,8 @@ app.get('/', (req, res, next) => {
    
 
 //Config
-app.listen(3000, () => {
-  console.log('NodeJS Running | API Ready for HTTP Requests'); 
-});
+const port = process.env.PORT;
+app.listen(port);
 
 
 //Connect to DB
