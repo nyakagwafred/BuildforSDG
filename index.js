@@ -93,8 +93,8 @@ app.listen(port);
 
 
 //Connect to DB
-mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => console.log('DB Connected!'))
-  .catch((err) => { console.log(Error, err.message); });
+// mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => console.log('DB Connected!'))
+//   .catch((err) => { console.log(Error, err.message); });
   
 
 
