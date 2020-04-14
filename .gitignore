@@ -107,5 +107,4 @@ login.txt
 app.js
 .env
 posts.js
-models/
 routes/

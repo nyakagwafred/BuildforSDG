@@ -20,10 +20,11 @@ const winston = require('winston');
 const appRoot = require('app-root-path');
 const estimator = require('../src/estimator');
 
+
+
 //Setup Morgan
 const fs = require('fs');
 const path = require('path');
-//const logDirectory = 'info.log';
 const format = ':method\t\t:url\t\t:status\t\t:response-time[0]ms';
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'info.log'), { flags: 'a' });
 
@@ -33,14 +34,12 @@ app.use(bodyParser.json());
 app.use(morgan(format, { stream: accessLogStream }));
 
 
-
-
 // Routes
 app.get('/', (req, res, next) => {
   res.send('API succesfully Deployed');
 });
 
-app.post('/', (req, res, next) => {
+app.post('/api/v1/on-covid-19', (req, res, next) => {
   const data = {
     region: req.body.region,
     name: req.body.region.name,
@@ -57,7 +56,9 @@ app.post('/', (req, res, next) => {
   res.send(estimator(data));
 });
 
-app.post('/api/v1/on-covid-19', (req, res, next) => {
+
+//JSON
+app.post('/api/v1/on-covid-19/json', (req, res, next) => {
   const data = {
     region: req.body.region,
     name: req.body.region.name,
@@ -128,12 +129,32 @@ app.post('//xml', (req, res, next) => {
   res.send(XML2JSNOparser.toXml(estimator(data)));
 });
 
-app.get('/', (req, res, next) => {
-  res.send('API succesfully Deployed');  
+app.post('/api/v1/on-covid-19/xml', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
+  };
+  res.set('Content-Type', 'application/xml');
+  res.send(XML2JSNOparser.toXml(estimator(data)));
 });
+
 
 //Send log file as text
 app.get('//logs', (req, res, next) => {
+  res.set('Content-Type', 'text/html');
+  res.sendFile('info.log', { root: __dirname });
+});
+
+app.get('/api/v1/on-covid-19/logs', (req, res, next) => {
   res.set('Content-Type', 'text/html');
   res.sendFile('info.log', { root: __dirname });
 });
