@@ -16,13 +16,21 @@ require('dotenv/config');
 const XML2JSNOparser = require('xml2json');
 const XMLParser = require('express-xml-bodyparser');
 const morgan = require('morgan');
-const winston = require('./winston');
+const winston = require('winston');
+const appRoot = require('app-root-path');
 const estimator = require('../src/estimator');
+
+//Setup Morgan
+const fs = require('fs');
+const path = require('path');
+//const logDirectory = 'info.log';
+const format = ':method\t\t:url\t\t:status\t\t:response-time[0]ms';
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'info.log'), { flags: 'a' });
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(morgan('combined', { stream: winston.stream }));
+app.use(morgan(format, { stream: accessLogStream }));
 
 
 
@@ -127,22 +135,22 @@ app.get('/', (req, res, next) => {
 //Send log file as text
 app.get('//logs', (req, res, next) => {
   res.set('Content-Type', 'text/html');
-  res.sendFile('info.log', { root: __dirname })
+  res.sendFile('info.log', { root: __dirname });
 });
    
-// error handler
-app.use((err, req, res, next) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// // error handler
+// app.use((err, req, res, next) => {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // add this line to include winston logging
-  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${res.ip} - ${req.status}`);
+//   // add this line to include winston logging
+//   winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${res.ip} - ${req.status}`);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 //Config
 const port = process.env.PORT || 3000;
