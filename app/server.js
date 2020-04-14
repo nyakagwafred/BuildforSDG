@@ -29,6 +29,27 @@ app.use(cors());
 
 
 // Routes
+app.get('/', (req, res, next) => {
+  res.send('API succesfully Deployed');
+});
+
+app.post('/', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
+  };
+  res.send(estimator(data));
+});
+
 app.post('/api/v1/on-covid-19', (req, res, next) => {
   const data = {
     region: req.body.region,
@@ -46,7 +67,7 @@ app.post('/api/v1/on-covid-19', (req, res, next) => {
   res.send(estimator(data));
 });
 
-app.post('/api/v1/on-covid-19/json', (req, res, next) => {
+app.post('//json', (req, res, next) => {
   const data = {
     region: req.body.region,
     name: req.body.region.name,
@@ -64,7 +85,7 @@ app.post('/api/v1/on-covid-19/json', (req, res, next) => {
 });
 
 
-app.post('/api/v1/on-covid-19/xml', (req, res, next) => {
+app.post('//xml', (req, res, next) => {
   const data = {
     region: req.body.region,
     name: req.body.region.name,
@@ -83,20 +104,7 @@ app.post('/api/v1/on-covid-19/xml', (req, res, next) => {
 
 
 app.get('/', (req, res, next) => {
-  const data = {
-    region: req.body.region,
-    name: req.body.region.name,
-    avgAge: req.body.region.avgAge,
-    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
-    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
-
-    periodType: req.body.periodType,
-    timeToElapse: req.body.timeToElapse,
-    reportedCases: req.body.reportedCases,
-    population: req.body.population,
-    totalHospitalBeds: req.body.totalHospitalBeds
-  };
-  res.send(estimator(data));
+  res.send('API succesfully Deployed');
 });
    
 
