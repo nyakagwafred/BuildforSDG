@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Capstone">
+    <meta name="Fred Nyakagwa" content="Owner">
+    <meta name="keywords" content="SDG">
+    <link rel="stylesheet" href="CSS/text.css">
+    <title>Building for SDGs</title>
+</head>
+
+
+<body>
+        <header>
+            <h1>The Pandemic! <span class="light">COVID-19</span></h1>
+            <div class="novelty">
+                <p> This is a <u>Novelty Tool</u> that can help society and leaders prepare for the real big problem of COVID-19, which is impacting on <b>lives</b>, <b>health systems</b>, <b>supply chains</b>, and <b>the economy</b>:</p>
+            </div>
+            <h3><u class="light">The <span class="light">COVID-19</span> Estimator Tool</u></h3>
+        </header>
+    
+    <div class="sub">
+        <form action="/action_page.php" class="form">
+            <fieldset>
+                <legend>The COVID 19 Estimator:</legend>
+                <label for="data-region">Region:</label><br>
+                <input type="text" data-region="Region" name="Population" id="data-region" placeholder="Africa" required><br>
+
+                <label for="data-avgAge">Region Average age:</label><br>
+                <input type="text" avgAge ="population" name="Average Age" id="data-avgAge" placeholder="Enter average age for this region" required><br>
+
+                <label for="data-avgDailyIncomeInUSD">Region Average Daily Income (USD):</label><br>
+                <input type="text" avgAge="population" name="Average Age" id="data-avgDailyIncomeInUSD" placeholder="Enter daily population income in USD" required><br>
+
+                <label for="data-avgDailyIncomePopulation">Region Average Daily Income Population:</label><br>
+                <input type="text" data-avgDailyIncomePopulation ="population" name="Average Age" id="data-avgDailyIncomePopulation" placeholder="Enter average income population for this region" required><br>
+
+                <label for="data-population">Population:</label><br>
+                <input type="text" data-population="population" name="Population"id="data-population" placeholder="Enter population for region/city..." required><br>
+
+                <label for="data-time-to-elapse">Time To Elapse:</label><br>
+                <input type="text" data-time-to-elapse="timeToElapse" name="Period" id="data-time-to-elapse" placeholder="Enter Time in Days/Weeks/Months..." required><br>
+
+                <label for="data-reported-cases">Reported Cases:</label><br>
+                <input type="text" data-reported-cases="reportedCases" name="Reported Cases" id="data-reported-cases" placeholder="Home many reported cases?" required><br>
+
+                <label for="data-total-hospital-beds">Total Hospital Beds:</label><br>
+                <input type="text" data-total-hospital-beds="totalHospitalBeds" name="Beds" id="data-total-hospital-beds" placeholder="How many availaible beds?" required><br>
+
+                <label for="data-period-type">Period Type:</label><br>
+                <select data-period-type="periodType" id="data-period-type" name="periodType" required>
+                    <option value="Days">Days</option>
+                    <option value="Weeks">Weeks</option>
+                    <option value="Months">Months</option>
+                </select>
+
+                <input type="submit" data-go-estimate="data-go-estimate"  value="Check Estimates" id="data-go-estimate">
+            </fieldset>
+        </form>
+    </div>
+
+
+    <footer>
+        <p>The Covid19 Estimator - Building4SDGs Andela Project by Fred Nyakagwa, Copyright &copy; 2020</p>
+    </footer>
+</body>
+
+</html>
