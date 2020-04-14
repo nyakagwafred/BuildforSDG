@@ -12,19 +12,17 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv/config');
 const XML2JSNOparser = require('xml2json');
 const XMLParser = require('express-xml-bodyparser');
 const morgan = require('morgan');
-const winston = require('winston');
 const appRoot = require('app-root-path');
-const estimator = require('../src/estimator');
 
 
 
 //Setup Morgan
 const fs = require('fs');
 const path = require('path');
+const estimator = require('../src/estimator');
 const format = ':method\t\t:url\t\t:status\t\t:response-time[0]ms';
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'info.log'), { flags: 'a' });
 
@@ -38,6 +36,11 @@ app.use(morgan(format, { stream: accessLogStream }));
 app.get('/', (req, res, next) => {
   res.send('API succesfully Deployed');
 });
+
+app.post('/', (req, res, next) => {
+  res.send('API succesfully Deployed');
+});
+
 
 app.post('/api/v1/on-covid-19', (req, res, next) => {
   const data = {
@@ -56,9 +59,7 @@ app.post('/api/v1/on-covid-19', (req, res, next) => {
   res.send(estimator(data));
 });
 
-
-//JSON
-app.post('/api/v1/on-covid-19/json', (req, res, next) => {
+app.get('/api/v1/on-covid-19', (req, res, next) => {
   const data = {
     region: req.body.region,
     name: req.body.region.name,
@@ -74,6 +75,43 @@ app.post('/api/v1/on-covid-19/json', (req, res, next) => {
   };
   res.send(estimator(data));
 });
+
+
+//JSON
+app.get('/api/v1/on-covid-19/json', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
+  };
+  res.send(estimator(data));
+});
+
+app.get('//json', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
+  };
+  res.send(estimator(data));
+});
+
 
 app.post('//json', (req, res, next) => {
   const data = {
@@ -111,7 +149,43 @@ app.post('//json', (req, res, next) => {
 //   res.send(XML2JSNOparser.toXml(estimator(data)));
 // });
 
+app.get('//xml', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
+  };
+  res.set('Content-Type', 'application/xml');
+  res.send(XML2JSNOparser.toXml(estimator(data)));
+});
+
 app.post('//xml', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
+  };
+  res.set('Content-Type', 'application/xml');
+  res.send(XML2JSNOparser.toXml(estimator(data)));
+});
+
+app.get('/api/v1/on-covid-19/xml', (req, res, next) => {
   const data = {
     region: req.body.region,
     name: req.body.region.name,
