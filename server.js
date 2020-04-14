@@ -88,9 +88,8 @@ app.get('/', (req, res, next) => {
    
 
 //Config
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 app.listen(port);
-
 
 //Connect to DB
 // mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true }).then(() => console.log('DB Connected!'))
