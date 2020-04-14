@@ -14,12 +14,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv/config');
 const XML2JSNOparser = require('xml2json');
-const estimator = require('./src/estimator');
+const estimator = require('../src/estimator');
 
 app.use(bodyParser.json());
 
 //Import Routes
-const postsRoute = require('./routes/posts');
+//const postsRoute = require('./routes/posts');
 
 
 // Middleware
