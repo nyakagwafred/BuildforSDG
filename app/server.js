@@ -15,12 +15,14 @@ const cors = require('cors');
 require('dotenv/config');
 const XML2JSNOparser = require('xml2json');
 const XMLParser = require('express-xml-bodyparser');
+const morgan = require('morgan');
+const winston = require('./winston');
 const estimator = require('../src/estimator');
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use(morgan('combined', { stream: winston.stream }));
 
 
 
@@ -118,16 +120,29 @@ app.post('//xml', (req, res, next) => {
   res.send(XML2JSNOparser.toXml(estimator(data)));
 });
 
-
-
 app.get('/', (req, res, next) => {
   res.send('API succesfully Deployed');  
 });
 
+//Send log file as text
 app.get('//logs', (req, res, next) => {
-  res.send('Log Files');
+  res.set('Content-Type', 'text/html');
+  res.sendFile('info.log', { root: __dirname })
 });
    
+// error handler
+app.use((err, req, res, next) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // add this line to include winston logging
+  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${res.ip} - ${req.status}`);
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 //Config
 const port = process.env.PORT || 3000;
