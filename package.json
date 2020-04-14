@@ -29,10 +29,6 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1"
   },
-  "scripts": {
-    "start": "node index.js"
-  },
-
   "browserslist": [
     "last 1 Chrome versions"
   ]
