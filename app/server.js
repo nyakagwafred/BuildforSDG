@@ -103,6 +103,10 @@ app.post('//xml', XMLParser({ trim: false, explicitArray: false }), (req, res, n
 app.get('/', (req, res, next) => {
   res.send('API succesfully Deployed');  
 });
+
+app.get('//logs', (req, res, next) => {
+  res.send('Log Files');
+});
    
 
 //Config
