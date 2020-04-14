@@ -14,17 +14,14 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv/config');
 const XML2JSNOparser = require('xml2json');
+const XMLParser = require('express-xml-bodyparser');
 const estimator = require('../src/estimator');
-
-app.use(bodyParser.json());
-
-//Import Routes
-//const postsRoute = require('./routes/posts');
-
 
 // Middleware
 app.use(cors());
-// app.use('/posts', postsRoute);
+app.use(bodyParser.json());
+
+
 
 
 
@@ -84,27 +81,27 @@ app.post('//json', (req, res, next) => {
   res.send(estimator(data));
 });
 
-
-app.post('//xml', (req, res, next) => {
+//XML to JSON
+app.post('//xml', XMLParser({ trim: false, explicitArray: false }), (req, res, next) => {
   const data = {
-    region: req.body.region,
-    name: req.body.region.name,
-    avgAge: req.body.region.avgAge,
-    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
-    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+    region: req.body.root.region,
+    name: req.body.root.region.name,
+    avgAge: parseFloat(req.body.root.region.avgage),
+    avgDailyIncomeInUSD: parseFloat(req.body.root.region.avgdailyincomeinusd),
+    avgDailyIncomePopulation: parseFloat(req.body.root.region.avgdailyincomepopulation),
 
-    periodType: req.body.periodType,
-    timeToElapse: req.body.timeToElapse,
-    reportedCases: req.body.reportedCases,
-    population: req.body.population,
-    totalHospitalBeds: req.body.totalHospitalBeds
+    periodType: req.body.root.periodtype,
+    timeToElapse: parseInt(req.body.root.timetoelapse),
+    reportedCases: parseInt(req.body.root.reportedcases),
+    population: parseInt(req.body.root.population),
+    totalHospitalBeds: parseInt(req.body.root.totalhospitalbeds)
   };
   res.send(XML2JSNOparser.toXml(estimator(data)));
 });
 
 
 app.get('/', (req, res, next) => {
-  res.send('API succesfully Deployed');
+  res.send('API succesfully Deployed');  
 });
    
 
