@@ -241,7 +241,7 @@ app.get('//logs', (req, res, next) => {
 });
 
 app.get('/api/v1/on-covid-19/logs', (req, res, next) => {
-  res.set('Content-Type', 'text/plain);
+  res.set('Content-Type', 'text/plain');
   res.sendFile('info.log', { root: __dirname });
 });
 
