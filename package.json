@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "lint": "eslint ./src/"
+    "lint": "eslint ./src/",
+    "start": "node ./app/server.js"
   },
   "dependencies": {
     "automatic-semicolon-insertion": "^2.0.5",
