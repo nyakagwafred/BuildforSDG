@@ -82,22 +82,42 @@ app.post('//json', (req, res, next) => {
 });
 
 //XML to JSON
-app.post('//xml', XMLParser({ trim: false, explicitArray: false }), (req, res, next) => {
-  const data = {
-    region: req.body.root.region,
-    name: req.body.root.region.name,
-    avgAge: parseFloat(req.body.root.region.avgage),
-    avgDailyIncomeInUSD: parseFloat(req.body.root.region.avgdailyincomeinusd),
-    avgDailyIncomePopulation: parseFloat(req.body.root.region.avgdailyincomepopulation),
+// app.post('//xml', XMLParser({ trim: false, explicitArray: false }), (req, res, next) => {
+//   const data = {
+//     region: req.body.root.region,
+//     name: req.body.root.region.name,
+//     avgAge: req.body.root.region.avgage,
+//     avgDailyIncomeInUSD: parseFloat(req.body.root.region.avgdailyincomeinusd),
+//     avgDailyIncomePopulation: parseFloat(req.body.root.region.avgdailyincomepopulation),
 
-    periodType: req.body.root.periodtype,
-    timeToElapse: parseInt(req.body.root.timetoelapse),
-    reportedCases: parseInt(req.body.root.reportedcases),
-    population: parseInt(req.body.root.population),
-    totalHospitalBeds: parseInt(req.body.root.totalhospitalbeds)
+//     periodType: req.body.root.periodtype,
+//     timeToElapse: req.body.root.timetoelapse,
+//     reportedCases: req.body.root.reportedcases,
+//     population: req.body.root.population,
+//     totalHospitalBeds: req.body.root.totalhospitalbeds
+//   };
+//   res.set('Content-Type', 'application/xml');
+//   res.send(XML2JSNOparser.toXml(estimator(data)));
+// });
+
+app.post('//xml', (req, res, next) => {
+  const data = {
+    region: req.body.region,
+    name: req.body.region.name,
+    avgAge: req.body.region.avgAge,
+    avgDailyIncomeInUSD: req.body.region.avgDailyIncomeInUSD,
+    avgDailyIncomePopulation: req.body.region.avgDailyIncomePopulation,
+
+    periodType: req.body.periodType,
+    timeToElapse: req.body.timeToElapse,
+    reportedCases: req.body.reportedCases,
+    population: req.body.population,
+    totalHospitalBeds: req.body.totalHospitalBeds
   };
+  res.set('Content-Type', 'application/xml');
   res.send(XML2JSNOparser.toXml(estimator(data)));
 });
+
 
 
 app.get('/', (req, res, next) => {
